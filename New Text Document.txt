@@ -1,0 +1,109 @@
+-------------------------------------------------------
+.Net Core
+-------------------------------------------------------
+
+https://github.com/DenGrom/booksAspCore.git
+
+check existing ASP.NET Core SDK is install 
+dotnet --version
+Lets see all available comand and prodjects 
+dotnet new -l 
+create webapi prodject
+dotnet new webapi
+dotnet restore
+open prodgect in visua studio code 
+code .
+
+
+Add-Migration InitialCreate
+Update-Database
+
+
+
+
+-------------------------------------------------------
+Angular
+-------------------------------------------------------
+npm install -g @angular/cli
+ng new my-app
+cd my-app
+ng serve --open
+
+ng generate component navMain
+or simple
+ng g c navMain
+or if error
+ng generate component admin --module=app.module
+generate serves
+ng g s data
+generate class
+ng generate cl [name]
+generete auth guard
+ng generate guard <name> [options]
+generate app module 
+ng generate module app-routing --flat --module=app
+
+git push -u origin master
+
+Get build for the prodject. It adds dist folder in prodject
+ng build
+After make build for prodaction. It will be a smaller
+ng build --prod
+start the app
+npm install -g http-server
+http-server -o
+
+how to clone
+https://code.visualstudio.com/docs/editor/versioncontrol
+https://blog.velingeorgiev.com/how-to-clone-git-project-with-visual-studio-code
+
+add bootstrap
+https://stackoverflow.com/questions/37649164/how-to-add-bootstrap-to-an-angular-cli-project
+
+add awesome
+https://stackoverflow.com/questions/38796541/how-to-add-font-awesome-to-angular-2-cli-project
+
+format
+ Shift + Alt + F
+comment / uncomment
+Ctrl + k when c
+ Shift + Alt + F
+
+
+base templete site
+http://books.ua/product/list-books-group/literatura-dlya-detej-i-yunoshestva/root
+
+base tutorial angular
+https://www.youtube.com/watch?v=5wtnKulcquA&feature=youtu.be
+
+tutorial Core2 jwt auth
+http://jasonwatmore.com/post/2018/08/14/aspnet-core-21-jwt-authentication-tutorial-with-example-api
+
+tutorial Angular 7 - JWT Authentication
+http://jasonwatmore.com/post/2018/11/16/angular-7-jwt-authentication-example-tutorial
+
+dotnet run 
+
+1. builder: angular.json
+A file named angular.json at the root level of an Angular workspace provides workspace-wide and project-specific configuration defaults for build and development tools provided by the Angular CLI.
+angular.json has "index": 
+"src/index.html",
+            "main": "src/main.ts",
+2. main.ts: starts the prodject, adds module(s) (import { AppModule } from './app/app.module';)
+ index.html: sets <app-root></app-root>, in this will be load app
+4. app.module: adds app.component.ts (import { AppComponent } from './app.component';) with ./app.component.html in wich exists all html content for <app-root></app-root>
+-import { AppRoutingModule } from './app-routing.module' set <router-outlet></router-outlet>
+-and many ather
+
+
+
+…or create a new repository on the command line
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/DenGrom/SmtpCoreAng.git
+git push -u origin master
+
+…or push an existing repository from the command line
+git remote add origin https://github.com/DenGrom/SmtpCoreAng.git
+git push -u origin master

@@ -1,0 +1,29 @@
+<h2>Active mailing list</h2>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Text</th>
+        <th>Status</th>
+        <th>Progress</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>General meeting</td>
+        <td>Everyone to collect in the meeting room</td>
+        <td>Open</td>
+        <td>All: 12. Get malis: 6</td>
+        <td>
+          <button (click)="onClickPause()" class="btn btn-sm btn-outline-secondary">Pause</button>&nbsp;
+          <button (click)="onClickStart()" class="btn btn-sm btn-outline-secondary">Start</button>&nbsp;
+          <button (click)="onClickDisable()" class="btn btn-sm btn-outline-secondary">Disable</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

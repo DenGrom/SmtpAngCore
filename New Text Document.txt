@@ -1,3 +1,6 @@
+
+
+https://getbootstrap.com/docs/4.0/examples/dashboard/
 -------------------------------------------------------
 .Net Core
 -------------------------------------------------------
@@ -97,13 +100,13 @@ angular.json has "index":
 
 
 
-…or create a new repository on the command line
+ï¿½or create a new repository on the command line
 git init
 git add README.md
 git commit -m "first commit"
 git remote add origin https://github.com/DenGrom/SmtpCoreAng.git
 git push -u origin master
 
-…or push an existing repository from the command line
+ï¿½or push an existing repository from the command line
 git remote add origin https://github.com/DenGrom/SmtpCoreAng.git
 git push -u origin master

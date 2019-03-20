@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -30,14 +31,14 @@ namespace SmtpCore
                     builder =>
                     {
                         builder
-                        .AllowAnyOrigin()
+                        .WithOrigins("http://localhost:4200")
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials();
                     });
             });
             services.AddSignalR();
-            services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,8 +48,15 @@ namespace SmtpCore
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
+
+            app.UseHttpsRedirection();
+
             app.UseCors("AllowAll");
-            app.UseSignalR(s => s.MapHub<EchoHub>("/echo"));
+            app.UseSignalR(s => s.MapHub<ChartHub>("/chart"));
             app.UseMvc();
         }
     }

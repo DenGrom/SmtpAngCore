@@ -5363,6 +5363,20 @@
         "runtime": {
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
+      },
+      "SmtpModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "Microsoft.AspNetCore.All": "2.2.3",
+          "Microsoft.AspNetCore.SignalR": "1.1.0"
+        },
+        "compile": {
+          "bin/placeholder/SmtpModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SmtpModels.dll": {}
+        }
       }
     }
   },
@@ -14186,13 +14200,19 @@
         "windowsazure.storage.8.1.4.nupkg.sha512",
         "windowsazure.storage.nuspec"
       ]
+    },
+    "SmtpModels/1.0.0": {
+      "type": "project",
+      "path": "../SmtpModels/SmtpModels.csproj",
+      "msbuildProject": "../SmtpModels/SmtpModels.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
       "Microsoft.AspNetCore.All >= 2.2.3",
       "Microsoft.AspNetCore.SignalR >= 1.1.0",
-      "Microsoft.NETCore.App >= 2.2.0"
+      "Microsoft.NETCore.App >= 2.2.0",
+      "SmtpModels >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -14227,7 +14247,11 @@
       },
       "frameworks": {
         "netcoreapp2.2": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\denisg\\source\\repos\\SmtpAngCore\\SmtpCore\\SmtpModels\\SmtpModels.csproj": {
+              "projectPath": "C:\\Users\\denisg\\source\\repos\\SmtpAngCore\\SmtpCore\\SmtpModels\\SmtpModels.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

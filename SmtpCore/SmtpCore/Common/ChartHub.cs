@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmtpCore.Common
 {
-    public class EchoHub : Hub
+    public class ChartHub : Hub
     {
-        public EchoHub(string message)
-        {
-            Clients.All.SendAsync("Send", message);
-        }
     }
 }

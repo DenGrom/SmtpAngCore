@@ -56,6 +56,11 @@ start the app
 npm install -g http-server
 http-server -o
 
+SignalR
+npm install @aspnet/signalr
+npm install ng2-charts --save
+npm install chart.js --save
+
 how to clone
 https://code.visualstudio.com/docs/editor/versioncontrol
 https://blog.velingeorgiev.com/how-to-clone-git-project-with-visual-studio-code
@@ -100,13 +105,14 @@ angular.json has "index":
 
 
 
-�or create a new repository on the command line
+or create a new repository on the command line
 git init
 git add README.md
 git commit -m "first commit"
 git remote add origin https://github.com/DenGrom/SmtpCoreAng.git
 git push -u origin master
 
-�or push an existing repository from the command line
+or push an existing repository from the command line
 git remote add origin https://github.com/DenGrom/SmtpCoreAng.git
 git push -u origin master
+

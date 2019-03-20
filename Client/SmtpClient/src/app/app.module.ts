@@ -8,6 +8,8 @@ import { EmailsComponent } from './emails/emails.component';
 import { CreateEmailComponent } from './create-email/create-email.component';
 import { UsersComponent } from './users/users.component';
 import { GroupsUsersComponent } from './groups-users/groups-users.component';
+import { ChartsModule } from 'ng2-charts';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { GroupsUsersComponent } from './groups-users/groups-users.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ChartsModule,
+    HttpClientModule
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue : '/' }

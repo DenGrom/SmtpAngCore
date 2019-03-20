@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SmtpEntities\SmtpEntities.csproj" />
     <ProjectReference Include="..\SmtpModels\SmtpModels.csproj" />
   </ItemGroup>
   

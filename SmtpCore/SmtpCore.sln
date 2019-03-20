@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmtpCore", "SmtpCore\SmtpCore.csproj", "{84C19BEB-23FC-4089-9F95-F437C1FF05C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmtpModels", "SmtpModels\SmtpModels.csproj", "{411D88B5-28DA-43E5-8456-68888374B489}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmtpModels", "SmtpModels\SmtpModels.csproj", "{411D88B5-28DA-43E5-8456-68888374B489}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmtpEntities", "SmtpEntities\SmtpEntities.csproj", "{2154A8B5-9012-41B4-A899-F64E5DA5D1DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{411D88B5-28DA-43E5-8456-68888374B489}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{411D88B5-28DA-43E5-8456-68888374B489}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{411D88B5-28DA-43E5-8456-68888374B489}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2154A8B5-9012-41B4-A899-F64E5DA5D1DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2154A8B5-9012-41B4-A899-F64E5DA5D1DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2154A8B5-9012-41B4-A899-F64E5DA5D1DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2154A8B5-9012-41B4-A899-F64E5DA5D1DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

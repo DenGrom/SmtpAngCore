@@ -8,7 +8,7 @@ namespace SmtpEntities.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Password { get; set; }
         public string AddressGroup { get; set; }
+        public bool IsActive { get; set; }
     }
 }

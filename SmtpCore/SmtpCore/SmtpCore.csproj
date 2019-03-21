@@ -18,6 +18,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.3" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.3" />
+    <PackageReference Include="Quartz" Version="3.0.7" />
+    <PackageReference Include="Quartz.Serialization.Json" Version="3.0.7" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +32,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SmtpEntities\SmtpEntities.csproj" />
     <ProjectReference Include="..\SmtpModels\SmtpModels.csproj" />
+    <ProjectReference Include="..\SmtpServices\SmtpServices.csproj" />
   </ItemGroup>
   
 

@@ -16,80 +16,85 @@ namespace SmtpCore.Common
         public async void Start()
         {
 
-            //if (_scheduler != null)
-            //{
-            //    throw new InvalidOperationException("Already started.");
-            //}
-
-            //var properties = new NameValueCollection
-            //{
-            //    // json serialization is the one supported under .NET Core (binary isn't)
-            //    ["quartz.serializer.type"] = "json",
-
-            //    // the following setup of job store is just for example and it didn't change from v2
-            //    ["quartz.scheduler.instanceName"] = "DotnetCoreScheduler",
-            //    ["quartz.scheduler.instanceId"] = "instance_one",
-            //    ["quartz.threadPool.type"] = "Quartz.Simpl.SimpleThreadPool, Quartz",
-            //    ["quartz.threadPool.threadCount"] = "5",
-            //    ["quartz.jobStore.misfireThreshold"] = "60000",
-            //    ["quartz.jobStore.type"] = "Quartz.Impl.AdoJobStore.JobStoreTX, Quartz",
-            //    ["quartz.jobStore.useProperties"] = "false",
-            //    ["quartz.jobStore.dataSource"] = "default",
-            //    ["quartz.jobStore.tablePrefix"] = "QRTZ_",
-            //    ["quartz.jobStore.driverDelegateType"] = "Quartz.Impl.AdoJobStore.SqlServerDelegate, Quartz",
-            //    ["quartz.dataSource.default.provider"] = "SqlServer", // SqlServer-41 is the new provider for .NET Core
-            //    ["quartz.dataSource.default.connectionString"] = @"Server=.\sql2016;Database=SmtpAngCore;Integrated Security=true"
-            //};
-
-            //var schedulerFactory = new StdSchedulerFactory(properties);
-            ////var schedulerFactory = new StdSchedulerFactory();
-            //_scheduler = schedulerFactory.GetScheduler().Result;
-            //_scheduler.Start().Wait();
-
-            //var userEmailsJob = JobBuilder.Create<SendUserEmailsJob>()
-            //    .WithIdentity("SendUserEmails")
-            //    .Build();
-            //var userEmailsTrigger = TriggerBuilder.Create()
-            //    .WithIdentity("UserEmailsCron")
-            //    .StartNow()
-            //    .WithCronSchedule("0 * 0 ? * * *")
-            //    .Build();
-            //if (!_scheduler.CheckExists(userEmailsJob.Key).Result)
-            //{
-            //    _scheduler.ScheduleJob(userEmailsJob, userEmailsTrigger).Wait();
-            //}
-
-
-
-
-
-
-            NameValueCollection props = new NameValueCollection
+            if (_scheduler != null)
             {
-                { "quartz.serializer.type", "binary" }
+                throw new InvalidOperationException("Already started.");
+            }
+
+            var properties = new NameValueCollection
+            {
+                // json serialization is the one supported under .NET Core (binary isn't)
+                ["quartz.serializer.type"] = "json",
+
+                //the following setup of job store is just for example and it didn't change from v2
+               ["quartz.scheduler.instanceName"] = "DotnetCoreScheduler",
+
+               ["quartz.scheduler.instanceId"] = "instance_one",
+
+               ["quartz.threadPool.type"] = "Quartz.Simpl.SimpleThreadPool, Quartz",
+                ["quartz.threadPool.threadCount"] = "1000000000",
+               ["quartz.jobStore.misfireThreshold"] = "60000",
+                ["quartz.jobStore.type"] = "Quartz.Impl.AdoJobStore.JobStoreTX, Quartz",
+                ["quartz.jobStore.useProperties"] = "false",
+                ["quartz.jobStore.dataSource"] = "default",
+                ["quartz.jobStore.tablePrefix"] = "QRTZ_",
+                ["quartz.jobStore.driverDelegateType"] = "Quartz.Impl.AdoJobStore.SqlServerDelegate, Quartz",
+                ["quartz.dataSource.default.provider"] = "SqlServer", // SqlServer-41 is the new provider for .NET Core
+                ["quartz.dataSource.default.connectionString"] = @"Server=.\sql2016;Database=SmtpAngCore;Integrated Security=true"
             };
-            StdSchedulerFactory factory = new StdSchedulerFactory(props);
 
-            // get a scheduler
-            IScheduler sched = await factory.GetScheduler();
-            await sched.Start();
+            var schedulerFactory = new StdSchedulerFactory(properties);
+            //var schedulerFactory = new StdSchedulerFactory();
+            _scheduler = schedulerFactory.GetScheduler().Result;
+            _scheduler.Start().Wait();
 
-            // define the job and tie it to our HelloJob class
-            IJobDetail job = JobBuilder.Create<SendUserEmailsJob>()
-                .WithIdentity("myJob", "group1")
+            var userEmailsJob = JobBuilder.Create<SendUserEmailsJob>()
+                .WithIdentity("SendUserEmails", "group1")
                 .Build();
-
-            // Trigger the job to run now, and then every 40 seconds
-            ITrigger trigger = TriggerBuilder.Create()
-                .WithIdentity("myTrigger", "group1")
+            var userEmailsTrigger = TriggerBuilder.Create()
+                .WithIdentity("UserEmailsCron", "group1")
                 .StartNow()
-                .WithSimpleSchedule(x => x
-                    .WithIntervalInSeconds(2)
-                    .RepeatForever())
+                .WithCronSchedule("0/3 0 0 ? * * *")
+                    //            .WithSimpleSchedule(x => x
+                    //.WithIntervalInSeconds(2)
+                    //.RepeatForever())
+                .Build();
+            if (!_scheduler.CheckExists(userEmailsJob.Key).Result)
+            {
+                _scheduler.ScheduleJob(userEmailsJob, userEmailsTrigger).Wait();
+            }
 
-            .Build();
 
-            await sched.ScheduleJob(job, trigger);
+
+
+
+
+            //NameValueCollection props = new NameValueCollection
+            //{
+            //    { "quartz.serializer.type", "binary" }
+            //};
+            //StdSchedulerFactory factory = new StdSchedulerFactory(props);
+
+            //// get a scheduler
+            //IScheduler sched = await factory.GetScheduler();
+            //await sched.Start();
+
+            //// define the job and tie it to our HelloJob class
+            //IJobDetail job = JobBuilder.Create<SendUserEmailsJob>()
+            //    .WithIdentity("myJob", "group1")
+            //    .Build();
+
+            //// Trigger the job to run now, and then every 40 seconds
+            //ITrigger trigger = TriggerBuilder.Create()
+            //    .WithIdentity("myTrigger", "group1")
+            //    .StartNow()
+            //    .WithSimpleSchedule(x => x
+            //        .WithIntervalInSeconds(2)
+            //        .RepeatForever())
+
+            //.Build();
+
+            //await sched.ScheduleJob(job, trigger);
         }
 
         // initiates shutdown of the scheduler, and waits until jobs exit gracefully (within allotted timeout)

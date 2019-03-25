@@ -1,5 +1,6 @@
 ﻿using Quartz;
 using Quartz.Impl;
+using SchedulerLib;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -13,56 +14,59 @@ namespace SmtpCore.Common
         private IScheduler _scheduler; // after Start, and until shutdown completes, references the scheduler object
 
         // starts the scheduler, defines the jobs and the triggers
-        public async void Start()
+        public Action Start(int emailId)
         {
 
-            if (_scheduler != null)
-            {
-                throw new InvalidOperationException("Already started.");
-            }
+            //ScheduleManager.CreateNewSchedule(DateTime.Now, ScheduleExecutionType.REPEATABLE, new TimeSpan(0, 0, 3), typeof(SendUserEmailsJob).ToString());
+            //ScheduleManager.Run();
+            return new Action(() => { });
+            //if (_scheduler != null)
+            //{
+            //    throw new InvalidOperationException("Already started.");
+            //}
 
-            var properties = new NameValueCollection
-            {
-                // json serialization is the one supported under .NET Core (binary isn't)
-                ["quartz.serializer.type"] = "json",
+            //var properties = new NameValueCollection
+            //{
+            //    // json serialization is the one supported under .NET Core (binary isn't)
+            //    ["quartz.serializer.type"] = "json",
 
-                //the following setup of job store is just for example and it didn't change from v2
-               ["quartz.scheduler.instanceName"] = "DotnetCoreScheduler",
+            //    //the following setup of job store is just for example and it didn't change from v2
+            //   ["quartz.scheduler.instanceName"] = "DotnetCoreScheduler",
 
-               ["quartz.scheduler.instanceId"] = "instance_one",
+            //   ["quartz.scheduler.instanceId"] = "instance_one",
 
-               ["quartz.threadPool.type"] = "Quartz.Simpl.SimpleThreadPool, Quartz",
-                ["quartz.threadPool.threadCount"] = "1000000000",
-               ["quartz.jobStore.misfireThreshold"] = "60000",
-                ["quartz.jobStore.type"] = "Quartz.Impl.AdoJobStore.JobStoreTX, Quartz",
-                ["quartz.jobStore.useProperties"] = "false",
-                ["quartz.jobStore.dataSource"] = "default",
-                ["quartz.jobStore.tablePrefix"] = "QRTZ_",
-                ["quartz.jobStore.driverDelegateType"] = "Quartz.Impl.AdoJobStore.SqlServerDelegate, Quartz",
-                ["quartz.dataSource.default.provider"] = "SqlServer", // SqlServer-41 is the new provider for .NET Core
-                ["quartz.dataSource.default.connectionString"] = @"Server=.\sql2016;Database=SmtpAngCore;Integrated Security=true"
-            };
+            //   ["quartz.threadPool.type"] = "Quartz.Simpl.SimpleThreadPool, Quartz",
+            //    ["quartz.threadPool.threadCount"] = "1000000000",
+            //   ["quartz.jobStore.misfireThreshold"] = "60000",
+            //    ["quartz.jobStore.type"] = "Quartz.Impl.AdoJobStore.JobStoreTX, Quartz",
+            //    ["quartz.jobStore.useProperties"] = "false",
+            //    ["quartz.jobStore.dataSource"] = "default",
+            //    ["quartz.jobStore.tablePrefix"] = "QRTZ_",
+            //    ["quartz.jobStore.driverDelegateType"] = "Quartz.Impl.AdoJobStore.SqlServerDelegate, Quartz",
+            //    ["quartz.dataSource.default.provider"] = "SqlServer", // SqlServer-41 is the new provider for .NET Core
+            //    ["quartz.dataSource.default.connectionString"] = @"Server=.\sql2016;Database=SmtpAngCore;Integrated Security=true"
+            //};
 
-            var schedulerFactory = new StdSchedulerFactory(properties);
-            //var schedulerFactory = new StdSchedulerFactory();
-            _scheduler = schedulerFactory.GetScheduler().Result;
-            _scheduler.Start().Wait();
+            //var schedulerFactory = new StdSchedulerFactory(properties);
+            ////var schedulerFactory = new StdSchedulerFactory();
+            //_scheduler = schedulerFactory.GetScheduler().Result;
+            //_scheduler.Start().Wait();
 
-            var userEmailsJob = JobBuilder.Create<SendUserEmailsJob>()
-                .WithIdentity("SendUserEmails", "group1")
-                .Build();
-            var userEmailsTrigger = TriggerBuilder.Create()
-                .WithIdentity("UserEmailsCron", "group1")
-                .StartNow()
-                .WithCronSchedule("0/3 0 0 ? * * *")
-                    //            .WithSimpleSchedule(x => x
-                    //.WithIntervalInSeconds(2)
-                    //.RepeatForever())
-                .Build();
-            if (!_scheduler.CheckExists(userEmailsJob.Key).Result)
-            {
-                _scheduler.ScheduleJob(userEmailsJob, userEmailsTrigger).Wait();
-            }
+            //var userEmailsJob = JobBuilder.Create<SendUserEmailsJob>()
+            //    .WithIdentity("SendUserEmails", "group1")
+            //    .Build();
+            //var userEmailsTrigger = TriggerBuilder.Create()
+            //    .WithIdentity("UserEmailsCron", "group1")
+            //    .StartNow()
+            //    .WithCronSchedule("0/3 0 0 ? * * *")
+            //        //            .WithSimpleSchedule(x => x
+            //        //.WithIntervalInSeconds(2)
+            //        //.RepeatForever())
+            //    .Build();
+            //if (!_scheduler.CheckExists(userEmailsJob.Key).Result)
+            //{
+            //    _scheduler.ScheduleJob(userEmailsJob, userEmailsTrigger).Wait();
+            //}
 
 
 

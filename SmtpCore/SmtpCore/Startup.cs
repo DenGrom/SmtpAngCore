@@ -55,7 +55,7 @@ namespace SmtpCore
             IApplicationLifetime lifetime)
         {
             var quartz = new QuartzStartup();
-            lifetime.ApplicationStarted.Register(quartz.Start);
+            lifetime.ApplicationStarted.Register(quartz.Start(1));
 
             if (env.IsDevelopment())
             {

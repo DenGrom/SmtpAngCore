@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SchedulerLib\SchedulerLib.csproj" />
     <ProjectReference Include="..\SmtpEntities\SmtpEntities.csproj" />
     <ProjectReference Include="..\SmtpModels\SmtpModels.csproj" />
     <ProjectReference Include="..\SmtpServices\SmtpServices.csproj" />

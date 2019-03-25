@@ -1,3 +1,53 @@
-<p>
-  create-email works!
-</p>
+<div class="col-md-12">
+  <h1 class="title text-center"></h1>
+  <br>
+  <form [formGroup]="messageForm" class="form-horizontal" (ngSubmit)="onSubmit()" >
+    <div class="fontcolour">
+      <fieldset>
+        <legend></legend>
+        <div class="editor-label">
+          <label for="">Title</label>
+        </div>
+        <div class="editor-field">
+          <input class="form-control" formControlTitle="title" type="text" value="">
+          <span class="error-input" *ngIf="submitted && messageForm.controls.title.errors" >
+            <span class="error-input" *ngIf="messageForm.controls.title.errors.required" > Your title is required</span>
+          </span>
+        </div>
+        <br>
+        <div class="editor-label">
+          <label for="">Phone</label>
+        </div>
+        <div class="editor-field">
+          <input class="form-control" id="phone"  type="text" value="">
+        </div>
+        <br>
+        <div class="editor-label">
+          <label for="">Email</label>
+        </div>
+        <div class="editor-field">
+          <input class="form-control" id="mail"  type="text" value="">
+          <span class="field-validation-valid" ></span>
+
+        </div>
+        <br>
+        <div class="editor-label">
+          <label for="">Body</label>
+        </div>
+
+        <div class="editor-label">
+          <textarea class="form-control" cols="20" id="body" formControlTitle="body" rows="5"></textarea>
+          <span class="error-input" *ngIf="submitted && messageForm.controls.body.errors" >
+            <span class="error-input" *ngIf="messageForm.controls.body.errors.required" > Your title is required</span>
+          </span>
+        </div>
+
+        <br>
+        <p>
+          <input class="btn btn-default" type="submit" value="Send">
+
+        </p>
+      </fieldset>
+    </div>
+  </form>
+</div>

@@ -37,10 +37,12 @@ or simple
 ng g c navMain
 or if error
 ng generate component admin --module=app.module
-generate serves
+generate service
 ng g s data
 generate class
 ng generate cl [name]
+generate enum
+ng generate enum [name]
 generete auth guard
 ng generate guard <name> [options]
 generate app module 

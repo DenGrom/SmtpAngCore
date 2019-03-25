@@ -5495,6 +5495,20 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
+      "SchedulerLib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "2.2.3",
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.3"
+        },
+        "compile": {
+          "bin/placeholder/SchedulerLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SchedulerLib.dll": {}
+        }
+      },
       "SmtpEntities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
@@ -5520,7 +5534,8 @@
           "Microsoft.AspNetCore.SignalR": "1.1.0",
           "Microsoft.EntityFrameworkCore": "2.2.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.2.3",
-          "Microsoft.EntityFrameworkCore.Tools": "2.2.3"
+          "Microsoft.EntityFrameworkCore.Tools": "2.2.3",
+          "SmtpEntities": "1.0.0"
         },
         "compile": {
           "bin/placeholder/SmtpModels.dll": {}
@@ -5535,7 +5550,9 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "2.2.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.2.3",
-          "Microsoft.EntityFrameworkCore.Tools": "2.2.3"
+          "Microsoft.EntityFrameworkCore.Tools": "2.2.3",
+          "SmtpEntities": "1.0.0",
+          "SmtpModels": "1.0.0"
         },
         "compile": {
           "bin/placeholder/SmtpServices.dll": {}
@@ -14670,6 +14687,11 @@
         "windowsazure.storage.nuspec"
       ]
     },
+    "SchedulerLib/1.0.0": {
+      "type": "project",
+      "path": "../SchedulerLib/SchedulerLib.csproj",
+      "msbuildProject": "../SchedulerLib/SchedulerLib.csproj"
+    },
     "SmtpEntities/1.0.0": {
       "type": "project",
       "path": "../SmtpEntities/SmtpEntities.csproj",
@@ -14696,6 +14718,7 @@
       "Microsoft.NETCore.App >= 2.2.0",
       "Quartz >= 3.0.7",
       "Quartz.Serialization.Json >= 3.0.7",
+      "SchedulerLib >= 1.0.0",
       "SmtpEntities >= 1.0.0",
       "SmtpModels >= 1.0.0",
       "SmtpServices >= 1.0.0"
@@ -14734,6 +14757,9 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
+            "C:\\Users\\denisg\\source\\repos\\SmtpAngCore\\SmtpCore\\SchedulerLib\\SchedulerLib.csproj": {
+              "projectPath": "C:\\Users\\denisg\\source\\repos\\SmtpAngCore\\SmtpCore\\SchedulerLib\\SchedulerLib.csproj"
+            },
             "C:\\Users\\denisg\\source\\repos\\SmtpAngCore\\SmtpCore\\SmtpServices\\SmtpServices.csproj": {
               "projectPath": "C:\\Users\\denisg\\source\\repos\\SmtpAngCore\\SmtpCore\\SmtpServices\\SmtpServices.csproj"
             },

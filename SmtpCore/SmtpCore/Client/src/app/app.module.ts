@@ -10,6 +10,7 @@ import { UsersComponent } from './users/users.component';
 import { GroupsUsersComponent } from './groups-users/groups-users.component';
 import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,10 +24,13 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     ChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
-    { provide: APP_BASE_HREF, useValue : '/' }
+    { provide: APP_BASE_HREF, useValue : '/' },
+    AppComponent
   ],
   bootstrap: [AppComponent]
 })

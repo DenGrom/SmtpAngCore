@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SmtpEntities.Entities
+namespace SmtpModels
 {
     public class Group
     {

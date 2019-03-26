@@ -4,6 +4,7 @@ using SmtpModels;
 using SmtpServices.Common;
 using SmtpServices.Contracts;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace SmtpServices
         private UserRepository _userRepository;
         private EmailRepository _emailRepository;
         private GroupEmailRepository _groupEmailRepository;
+        private GroupRepository _groupRepository;
         private SmtpGmail _smtpGmail;
         public EmailService(ApplicationContext applicationContext)
         {
@@ -21,6 +23,7 @@ namespace SmtpServices
             _emailRepository = new EmailRepository(applicationContext);
             _groupEmailRepository = new GroupEmailRepository(applicationContext);
             _smtpGmail = new SmtpGmail();
+            _groupRepository = new GroupRepository(applicationContext);
         }
         public async Task<bool> SendAdminEmails()
         {
@@ -52,6 +55,23 @@ namespace SmtpServices
             };
             var emailId = _emailRepository.CreateEmail(emailEntity);
             _groupEmailRepository.CreateGroupeEmailByEmailId(emailId);
+        }
+
+        public List<Group> GetAllGroups()
+        {
+            var groupsEntity = _groupRepository.GetAllGroups();
+            var newGroups = new List<Group>();
+            foreach(var groupEntity in groupsEntity)
+            {
+                var newGroup = new Group{
+                    AddressGroup = groupEntity.AddressGroup,
+                    Id= groupEntity.Id,
+                    IsActive = groupEntity.IsActive,
+                    Name = groupEntity.Name
+                };
+                newGroups.Add(newGroup);
+            }
+            return newGroups;
         }
     }
 }

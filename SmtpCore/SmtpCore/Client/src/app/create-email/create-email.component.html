@@ -9,26 +9,10 @@
           <label for="">Title</label>
         </div>
         <div class="editor-field">
-          <input class="form-control" formControlTitle="title" type="text" value="">
+          <input class="form-control" formControlName="title" type="text" >
           <span class="error-input" *ngIf="submitted && messageForm.controls.title.errors" >
             <span class="error-input" *ngIf="messageForm.controls.title.errors.required" > Your title is required</span>
           </span>
-        </div>
-        <br>
-        <div class="editor-label">
-          <label for="">Phone</label>
-        </div>
-        <div class="editor-field">
-          <input class="form-control" id="phone"  type="text" value="">
-        </div>
-        <br>
-        <div class="editor-label">
-          <label for="">Email</label>
-        </div>
-        <div class="editor-field">
-          <input class="form-control" id="mail"  type="text" value="">
-          <span class="field-validation-valid" ></span>
-
         </div>
         <br>
         <div class="editor-label">
@@ -36,17 +20,35 @@
         </div>
 
         <div class="editor-label">
-          <textarea class="form-control" cols="20" id="body" formControlTitle="body" rows="5"></textarea>
+          <textarea class="form-control" cols="20" id="body" formControlName="body" rows="5"></textarea>
           <span class="error-input" *ngIf="submitted && messageForm.controls.body.errors" >
             <span class="error-input" *ngIf="messageForm.controls.body.errors.required" > Your title is required</span>
           </span>
         </div>
 
         <br>
-        <p>
-          <input class="btn btn-default" type="submit" value="Send">
 
-        </p>
+
+        <div class="editor-label">
+          <label for="">Groups</label>
+        </div>
+        <select  class="form-control" id="groupControl" formControlName="groupControl" (change)="selectGroup($event.target.value)" 
+         class="btn btn-secondary dropdown-toggle">
+          <option *ngFor="let gr of groups; let i = index" value= {{gr.id}} selected="i==0">
+            {{gr.name}}
+          </option>
+        </select>
+        <br>
+        <br>
+        <span>
+          <input class="btn btn-default" type="submit" value="Save">
+
+        </span>
+        &nbsp;&nbsp;
+        <span>
+          <input class="btn btn-default" (click)="selectGroup($event.target.value)" type="button" value="Run">
+
+        </span>
       </fieldset>
     </div>
   </form>

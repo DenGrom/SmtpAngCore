@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SmtpEntities;
+using SmtpModels;
+using SmtpServices.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +12,17 @@ namespace SmtpCore.Controllers
     [Route("api/[controller]")]
     public class GroupController : Controller
     {
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private IEmailService _emailServicel;
+
+        public GroupController(ApplicationContext applicationContext, IEmailService emailService)
         {
-            return new string[] { "value1", "value2" };
+            _emailServicel = emailService;
+        }
+
+        [HttpGet]
+        public IEnumerable<Group> GetAllGroups()
+        {
+            return _emailServicel.GetAllGroups();
         }
 
     }

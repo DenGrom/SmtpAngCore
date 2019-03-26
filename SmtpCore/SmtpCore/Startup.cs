@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SmtpCore.Common;
 using SmtpEntities;
+using SmtpServices;
+using SmtpServices.Contracts;
 
 namespace SmtpCore
 {
@@ -44,6 +46,7 @@ namespace SmtpCore
                     });
             });
             services.AddSignalR();
+            services.AddTransient<IEmailService, EmailService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -67,7 +70,7 @@ namespace SmtpCore
             }
 
             app.UseHttpsRedirection();
-
+            //app.UseMvcWithDefaultRoute();
             app.UseCors("AllowAll");
             app.UseSignalR(s => s.MapHub<ChartHub>("/chart"));
             app.UseMvc();
